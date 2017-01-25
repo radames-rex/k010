@@ -1,0 +1,10 @@
+{
+	"general" : {
+		"welcome" : "K010 APP | Kenoby, Here We Go!",
+		"back" : "Back",
+		"others" : "Others",
+		"error" : {
+			"request" : "Try Again!"
+		}
+	}
+}

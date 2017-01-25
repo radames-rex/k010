@@ -1,0 +1,64 @@
+'use strict';
+
+/**
+ * @ngdoc overview
+ * @name k010App
+ * @description
+ * # k010App
+ *
+ * Main module of the application.
+ */
+angular
+  .module('k010App', [
+    'ngAnimate',
+    'ngAria',
+    'ngCookies',
+    'ngMessages',
+    'ngResource',
+    'ui.router',
+    'ngSanitize',
+    'ngTouch',
+    'pascalprecht.translate',
+    'ngMaterial',
+    'ngMap'
+  ])
+  .constant('PATH', {
+    main: '/main',
+    people: '/people'
+  })
+  .constant('REQUEST', {
+    api: {
+      url: 'http://localhost:8080/api'
+    }
+  })
+  .config(function($stateProvider, $urlRouterProvider, $translateProvider, PATH, $mdThemingProvider) {
+
+    /* Configuração do provider de universalização e da linguagem padrão. */
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'translate/messages-',
+      suffix: '.json'
+    });
+    // $translateProvider.preferredLanguage('en');
+    $translateProvider.preferredLanguage(navigator.language);
+
+    /*Configuração do Tema. */
+    $mdThemingProvider.theme('default')
+      .primaryPalette('blue-grey')
+      .accentPalette('purple');
+
+    /* Configuração dos estados e rotas da aplicação */
+    $stateProvider.state('main', {
+      abstract: true,
+      url: PATH.main,
+      templateUrl: 'views/main.html'
+    }).state('main.people', {
+      url: PATH.people,
+      templateUrl: 'views/people.html',
+      controller: 'PeopleCtrl as ctrl'
+    });
+
+    $urlRouterProvider.otherwise(function() {
+      return '/main/people';
+    });
+
+  });

@@ -1,0 +1,40 @@
+
+// Utils
+@import "utils/local-fonts.less";
+
+//IE*
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+// Reset
+// link to css reset
+html, body, #ui-view{
+	font-family: 'Roboto', sans-serif;
+	background-color: @main-bg-color;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+}
+html{
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+html, html *{
+	box-sizing: border-box;
+}
+body.grabbing, body.grabbing *{
+	cursor: -webkit-grabbing;
+	cursor: -moz-grabbing;
+}
+
+// Base
+@import "base/mixins.less";
+@import "base/variables.less";
+
+// Components
+@import "components/main.less";
+@import "components/people.less";

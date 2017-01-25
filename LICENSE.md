@@ -10,7 +10,7 @@ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 "License" shall mean the terms and conditions for use, reproduction, and
 distribution as defined by Sections 1 through 9 of this document.
 
-"Licensor" shall mean the copyright owner or entity authorized by the copyright
+"Licensor" shall mean the copyright owner or entity Peopleorized by the copyright
 owner that is granting the License.
 
 "Legal Entity" shall mean the union of the acting entity and all other entities
@@ -31,21 +31,21 @@ files.
 translation of a Source form, including but not limited to compiled object code,
 generated documentation, and conversions to other media types.
 
-"Work" shall mean the work of authorship, whether in Source or Object form, made
+"Work" shall mean the work of Peopleorship, whether in Source or Object form, made
 available under the License, as indicated by a copyright notice that is included
 in or attached to the work (an example is provided in the Appendix below).
 
 "Derivative Works" shall mean any work, whether in Source or Object form, that
 is based on (or derived from) the Work and for which the editorial revisions,
 annotations, elaborations, or other modifications represent, as a whole, an
-original work of authorship. For the purposes of this License, Derivative Works
+original work of Peopleorship. For the purposes of this License, Derivative Works
 shall not include works that remain separable from, or merely link (or bind by
 name) to the interfaces of, the Work and Derivative Works thereof.
 
-"Contribution" shall mean any work of authorship, including the original version
+"Contribution" shall mean any work of Peopleorship, including the original version
 of the Work and any modifications or additions to that Work or Derivative Works
 thereof, that is intentionally submitted to Licensor for inclusion in the Work
-by the copyright owner or by an individual or Legal Entity authorized to submit
+by the copyright owner or by an individual or Legal Entity Peopleorized to submit
 on behalf of the copyright owner. For the purposes of this definition,
 "submitted" means any form of electronic, verbal, or written communication sent
 to the Licensor or its representatives, including but not limited to

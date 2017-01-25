@@ -1,0 +1,90 @@
+<md-dialog aria-label="{{ 'dashboard.new' | translate}}" ng-controller="PeopleCtrl as ctrl">
+  <form name="survivorForm" ng-submit="newSurvivor()" ng-show="!logged">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>
+          <md-icon class="main__logo" md-svg-icon="images/svg/new-survivor.svg" aria-label="New"></md-icon>
+          {{ 'dashboard.new' | translate}}
+        </h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="People">
+        <div class="People__modal">
+          <md-grid-list md-cols="5" md-cols-xs="1" md-row-height="14px" md-gutter="10px">
+            <md-grid-tile md-colspan="5" md-colspan-xs="1" md-rowspan-xs="4" md-rowspan="4">
+              <md-input-container>
+                <label>{{ 'survivor.name' | translate }}</label>
+                <input type="text" name="name" ng-model="ctrl.name" required>
+              </md-input-container>
+            </md-grid-tile>
+            <md-grid-tile md-colspan="2" md-colspan-xs="1" md-rowspan-xs="4" md-rowspan="8">
+              <md-input-container>
+                <label>{{ 'survivor.age' | translate }}</label>
+                <input type="number" name="age" ng-model="ctrl.age" required>
+              </md-input-container>
+            </md-grid-tile>
+            <md-grid-tile md-colspan="1" md-colspan-xs="1" md-rowspan-xs="4" md-rowspan="8">
+              <p class="People__label">{{ 'survivor.gender' | translate }}:
+                <span class="radioValue">{{ gender }}</span>
+              </p>
+              <md-radio-group ng-model="ctrl.gender">
+                <md-radio-button value="M" class="md-primary">{{ 'survivor.male' | translate }}</md-radio-button>
+                <md-radio-button value="F">{{ 'survivor.female' | translate }}</md-radio-button>
+              </md-radio-group>
+            </md-grid-tile>
+            <md-grid-tile md-colspan="2" md-colspan-xs="1" md-rowspan-xs="4" md-rowspan="1">
+              <label class="People__label">{{ 'survivor.inventory.title' | translate }}:</label>
+            </md-grid-tile>
+            <md-grid-tile md-colspan="2" md-colspan-xs="1" md-rowspan-xs="4" md-rowspan="2">
+              <md-input-container>
+                <label>{{ 'survivor.inventory.water' | translate }}</label>
+                <input type="number" name="water" ng-model="ctrl.inventory.water" ng-init="ctrl.inventory.water = 0">
+              </md-input-container>
+            </md-grid-tile>
+            <md-grid-tile md-colspan="2" md-colspan-xs="1" md-rowspan-xs="4" md-rowspan="2">
+              <md-input-container>
+                <label>{{ 'survivor.inventory.food' | translate }}</label>
+                <input type="number" name="food" ng-model="ctrl.inventory.food" ng-init="ctrl.inventory.food = 0">
+              </md-input-container>
+            </md-grid-tile>
+            <md-grid-tile md-colspan="2" md-colspan-xs="1" md-rowspan-xs="4" md-rowspan="2">
+              <md-input-container>
+                <label>{{ 'survivor.inventory.medication' | translate }}</label>
+                <input type="number" name="medication" ng-model="ctrl.inventory.medication" ng-init="ctrl.inventory.medication = 0">
+              </md-input-container>
+            </md-grid-tile>
+            <md-grid-tile md-colspan="2" md-colspan-xs="1" md-rowspan-xs="4" md-rowspan="2">
+              <md-input-container>
+                <label>{{ 'survivor.inventory.ammunition' | translate }}</label>
+                <input type="number" name="ammunition" ng-model="ctrl.inventory.ammunition" ng-init="ctrl.inventory.ammunition = 0">
+              </md-input-container>
+            </md-grid-tile>
+            <!-- <md-grid-tile md-colspan="5" md-colspan-xs="1" md-rowspan-xs="4" md-rowspan="2" ng-cloak> -->
+              <div class="" style="width:100px;height:100px;">
+                <ng-map center='current-position' geo-fallback-center="[40.74, -74.18]" geo-callback="ctrl.callbackFunc()">
+                  <marker position="current" centered="true"></marker>
+                </ng-map>
+              </div>
+            <!-- </md-grid-tile> -->
+          </md-grid-list>
+        </div>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button class="md-primary md-raised" type="submit" ng-disabled="survivorForm.$invalid">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        New
+      </md-button>
+    </md-dialog-actions>
+  </form>
+  <div class="">
+    <md-button class="md-primary" ng-show="logged" ng-click="hide()">
+      <i class="fa fa-home" aria-hidden="true"></i>
+      Start
+    </md-button>
+  </div>
+</md-dialog>

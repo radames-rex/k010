@@ -1,0 +1,13 @@
+<div class="main" ng-controller="MainCtrl as ctrl">
+  <md-toolbar md-scroll-shrink>
+    <div class="md-toolbar-tools">
+      <h3>
+        <span>{{'general.welcome' | translate}}</span>
+        <md-icon class="main__logo" md-svg-icon="images/svg/zssn-logo.svg" aria-label="ZSSN"></md-icon>
+      </h3>
+    </div>
+  </md-toolbar>
+
+  <section class="main__container" ui-view></section>
+
+</div>
