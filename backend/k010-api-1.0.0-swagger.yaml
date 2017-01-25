@@ -1,0 +1,189 @@
+swagger: '2.0'
+info:
+  description: API simples para sorteios
+  version: 1.0.0
+  title: K010 API
+  # put the contact info for your development or API team
+  contact:
+    email: radames.rex@gmail.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# schemes:
+# - http
+# - https
+paths:
+  /peoples:
+    get:
+      summary: Lista Pessoas
+      operationId: peoplesGET
+      description: |
+        Busca todas as pessoas cadastradas.
+      produces:
+      - application/json
+      responses:
+        200:
+          description: resultado da busca
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+        400:
+          description: requisição inválida
+  /people:
+    post:
+      summary: Cadastra pessoa
+      operationId: peoplePOST
+      description: |
+        Cadastra uma pessoa.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: people
+        description: dados da pessoa
+        required: true  
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+      responses:
+        201:
+          description: cadastrado com sucesso
+        400:
+          description: requisição inválida  
+        409:
+          description: pessoa já existe
+    options:
+      operationId: peopleOPTIONS
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        200:
+          description: métodos disponíveis
+          schema:
+            type: array
+            items:
+              type: string
+  /people/{id}:
+    get:
+      summary: Busca Pessoa
+      operationId: peopleIdGET
+      description: |
+        Busca os dados de uma pessoa específica.
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        description: id da pessoa
+        type: string
+        required: true
+      responses:
+        200:
+          description: resultado da busca
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              email:
+                type: string
+              amigo:
+                type: string
+        400:
+          description: requisição inválida
+    put:
+      summary: Edita pessoa
+      operationId: peopleIdPUT
+      description: |
+        Altera os dados de uma pessoa específica.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        description: id da pessoa
+        type: string
+        required: true      
+      - in: body
+        name: people
+        description: dados da pessoa
+        required: true  
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+      responses:
+        200:
+          description: editado com sucesso
+        400:
+          description: requisição inválida
+    delete:
+      summary: Deleta pessoa
+      operationId: peopleIdDELETE
+      description: |
+        Apaga uma pessoa específica.
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        description: id da pessoa
+        type: string
+        required: true      
+      responses:
+        200:
+          description: apagado com sucesso
+        400:
+          description: requisição inválida
+        403:
+          description: proibido
+    options:
+      operationId: peopleIdOPTIONS
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        description: id da pessoa
+        type: string
+        required: true      
+      responses:
+        200:
+          description: métodos disponíveis
+          schema:
+            type: array
+            items:
+              type: string
+# host: localhost
+# basePath: /api
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /radames-rex/k010-api/1.0.0
+schemes:
+ - https
+ - http

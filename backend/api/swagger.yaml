@@ -1,0 +1,192 @@
+---
+swagger: "2.0"
+info:
+  description: "API simples para sorteios"
+  version: "1.0.0"
+  title: "K010 API"
+  contact:
+    email: "radames.rex@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "virtserver.swaggerhub.com"
+basePath: "/radames-rex/k010-api/1.0.0"
+schemes:
+- "https"
+- "http"
+paths:
+  /people:
+    post:
+      summary: "Cadastra pessoa"
+      description: "Cadastra uma pessoa.\n"
+      operationId: "peoplePOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "people"
+        description: "dados da pessoa"
+        required: true
+        schema:
+          $ref: "#/definitions/people"
+      responses:
+        201:
+          description: "cadastrado com sucesso"
+        400:
+          description: "requisição inválida"
+        409:
+          description: "pessoa já existe"
+      x-swagger-router-controller: "Public"
+    options:
+      operationId: "peopleOPTIONS"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "métodos disponíveis"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+      x-swagger-router-controller: "Public"
+  /people/{id}:
+    get:
+      summary: "Busca Pessoa"
+      description: "Busca os dados de uma pessoa específica.\n"
+      operationId: "peopleIdGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id da pessoa"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "resultado da busca"
+          schema:
+            $ref: "#/definitions/inline_response_200"
+        400:
+          description: "requisição inválida"
+      x-swagger-router-controller: "Public"
+    put:
+      summary: "Edita pessoa"
+      description: "Altera os dados de uma pessoa específica.\n"
+      operationId: "peopleIdPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id da pessoa"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "people"
+        description: "dados da pessoa"
+        required: true
+        schema:
+          $ref: "#/definitions/people_1"
+      responses:
+        200:
+          description: "editado com sucesso"
+        400:
+          description: "requisição inválida"
+      x-swagger-router-controller: "Public"
+    delete:
+      summary: "Deleta pessoa"
+      description: "Apaga uma pessoa específica.\n"
+      operationId: "peopleIdDELETE"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id da pessoa"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "apagado com sucesso"
+        400:
+          description: "requisição inválida"
+        403:
+          description: "proibido"
+      x-swagger-router-controller: "Public"
+    options:
+      operationId: "peopleIdOPTIONS"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id da pessoa"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "métodos disponíveis"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+      x-swagger-router-controller: "Public"
+  /peoples:
+    get:
+      summary: "Lista Pessoas"
+      description: "Busca todas as pessoas cadastradas.\n"
+      operationId: "peoplesGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "resultado da busca"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/inline_response_200_1"
+        400:
+          description: "requisição inválida"
+      x-swagger-router-controller: "Public"
+definitions:
+  inline_response_200_1:
+    properties:
+      name:
+        type: "string"
+      id:
+        type: "string"
+  inline_response_200:
+    properties:
+      name:
+        type: "string"
+      email:
+        type: "string"
+      amigo:
+        type: "string"
+  people:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      email:
+        type: "string"
+  people_1:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      email:
+        type: "string"
