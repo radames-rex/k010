@@ -17,18 +17,25 @@ exports.peopleIdGET = function(args, res, next) {
      * parameters expected in the args:
      * id (String)
      **/
-    var data = {};
-    data['application/json'] = {
-        "name": "aeiou",
-        "email": "aeiou",
-        "amigo": "aeiou"
-    };
-    if (Object.keys(data).length > 0) {
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(data[Object.keys(data)[0]] || {}, null, 2));
-    } else {
-        res.end();
-    }
+    var data = {},
+      db = DBConfig.dbConnect();
+    db.once('open', function(){
+      console.log('Conectado ao MongoDB.');
+      People.findOne({"_id":args.id.value},function(err, people){
+        data['application/json'] = {
+            "name": people.name,
+            "email": people.email,
+            "amigo": people.friend
+        };
+        DBConfig.dbClose();
+        if (Object.keys(data).length > 0) {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(data[Object.keys(data)[0]] || {}, null, 2));
+        } else {
+            res.end();
+        }
+      });
+    });
 
 }
 
@@ -38,7 +45,7 @@ exports.peopleIdOPTIONS = function(args, res, next) {
      * id (String)
      **/
     var data = {};
-    data['application/json'] = ["aeiou"];
+    data['application/json'] = ['POST', 'GET', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'];
     if (Object.keys(data).length > 0) {
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(data[Object.keys(data)[0]] || {}, null, 2));
@@ -63,7 +70,7 @@ exports.peopleOPTIONS = function(args, res, next) {
      * parameters expected in the args:
      **/
     var data = {};
-    data['application/json'] = ["aeiou"];
+    data['application/json'] = ['POST', 'GET', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'];
     if (Object.keys(data).length > 0) {
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(data[Object.keys(data)[0]] || {}, null, 2));
@@ -102,8 +109,8 @@ exports.peoplesGET = function(args, res, next) {
      * parameters expected in the args:
      **/
     var data = {},
-      arr = [];
-    var db = DBConfig.dbConnect();
+      arr = [],
+      db = DBConfig.dbConnect();
     db.once('open', function(){
       console.log('Conectado ao MongoDB.');
       People.find().exec(function(err, peoples){
