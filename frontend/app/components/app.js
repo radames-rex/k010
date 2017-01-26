@@ -28,7 +28,13 @@ angular
   })
   .constant('REQUEST', {
     api: {
-      url: 'http://localhost:8080/api'
+      url: 'http://localhost:8080/api',
+      smtp: '???',
+      add: '/people',
+      edit: '/people/',
+      delete: '/people/',
+      fetch: '/people/',
+      list: '/peoples'
     }
   })
   .config(function($stateProvider, $urlRouterProvider, $translateProvider, PATH, $mdThemingProvider) {
@@ -43,8 +49,8 @@ angular
 
     /*Configuração do Tema. */
     $mdThemingProvider.theme('default')
-      .primaryPalette('blue-grey')
-      .accentPalette('purple');
+      .primaryPalette('brown')
+      .accentPalette('light-green');
 
     /* Configuração dos estados e rotas da aplicação */
     $stateProvider.state('main', {

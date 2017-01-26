@@ -9,7 +9,7 @@
    * # PeopleCtrl
    * Controller of the k010App
    */
-  var PeopleCtrl = function($scope, $rootScope, PeopleFactory, NgMap) {
+  var PeopleCtrl = function($scope, $rootScope, PeopleFactory) {
 
     if (PeopleFactory.hasUUID()) {
       $scope.logged = true;
@@ -39,22 +39,9 @@
       });
     };
 
-    var ctrl = this;
-    NgMap.getMap().then(function(map) {
-      ctrl.map = map;
-    });
-    ctrl.callbackFunc = function() {
-      setTimeout(function () {
-        $scope.ctrl.coordinates = {
-          lat: ctrl.map.center.lat(),
-          lon: ctrl.map.center.lng()
-        };
-      }, 700);
-    };
-
   };
 
-  PeopleCtrl.$inject = ['$scope', '$rootScope', 'PeopleFactory', 'NgMap'];
+  PeopleCtrl.$inject = ['$scope', '$rootScope', 'PeopleFactory'];
 
   angular
     .module('k010App')
