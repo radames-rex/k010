@@ -101,31 +101,27 @@ exports.peoplesGET = function(args, res, next) {
     /**
      * parameters expected in the args:
      **/
-    var data = {};
-    data['application/json'] = [{
-        "name": "aeiou",
-        "id": "aeiou"
-    }];
+    var data = {},
+      arr = [];
     var db = DBConfig.dbConnect();
     db.once('open', function(){
       console.log('Conectado ao MongoDB.');
-      var r = new People({
-        name: 'Radix',
-        email: 'Radix@gmail.com'
-      });
-      r.save(function(err, r) {
-        if(err){
-          return console.error(err);
-          console.dir(r);
+      People.find().exec(function(err, peoples){
+        peoples.forEach(function(value){
+          arr.push({
+              "id": value['_id'],
+              "name": value['name']
+          });
+        });
+        data['application/json'] = arr;
+        DBConfig.dbClose();
+        if (Object.keys(data).length > 0) {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(data[Object.keys(data)[0]] || {}, null, 2));
+        } else {
+            res.end();
         }
       });
     });
-    DBConfig.dbClose();
-    if (Object.keys(data).length > 0) {
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(data[Object.keys(data)[0]] || {}, null, 2));
-    } else {
-        res.end();
-    }
 
 }
