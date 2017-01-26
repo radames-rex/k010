@@ -8,7 +8,17 @@ exports.peopleIdDELETE = function(args, res, next) {
      * parameters expected in the args:
      * id (String)
      **/
-    // no response value expected for this operation
+    var db = DBConfig.dbConnect();
+    db.once('open', function(){
+      console.log('Conectado ao MongoDB.');
+      People.remove({"_id":args.id.value},function(err){
+        if(err){
+          return console.error(err);
+          console.dir(p);
+        }
+        DBConfig.dbClose();
+      });
+    });
     res.end();
 }
 
@@ -22,6 +32,10 @@ exports.peopleIdGET = function(args, res, next) {
     db.once('open', function(){
       console.log('Conectado ao MongoDB.');
       People.findOne({"_id":args.id.value},function(err, people){
+        if(err){
+          return console.error(err);
+          console.dir(p);
+        }
         data['application/json'] = {
             "name": people.name,
             "email": people.email,
@@ -93,7 +107,6 @@ exports.peoplePOST = function(args, res, next) {
         email: args.people.value.email
       });
       p.save(function(err, p) {
-        console.log('teste');
         if(err){
           return console.error(err);
           console.dir(p);
@@ -114,6 +127,10 @@ exports.peoplesGET = function(args, res, next) {
     db.once('open', function(){
       console.log('Conectado ao MongoDB.');
       People.find().exec(function(err, peoples){
+        if(err){
+          return console.error(err);
+          console.dir(p);
+        }
         peoples.forEach(function(value){
           arr.push({
               "id": value['_id'],
