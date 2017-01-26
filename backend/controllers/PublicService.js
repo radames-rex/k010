@@ -1,5 +1,8 @@
 'use strict';
 
+var DBConfig = require('./DBConfig');
+var People = require('./peopleModel');
+
 exports.peopleIdDELETE = function(args, res, next) {
     /**
      * parameters expected in the args:
@@ -75,7 +78,22 @@ exports.peoplePOST = function(args, res, next) {
      * parameters expected in the args:
      * people (People)
      **/
-    // no response value expected for this operation
+    var db = DBConfig.dbConnect();
+    db.once('open', function(){
+      console.log('Conectado ao MongoDB.');
+      var p = new People({
+        name: args.people.value.name,
+        email: args.people.value.email
+      });
+      p.save(function(err, p) {
+        console.log('teste');
+        if(err){
+          return console.error(err);
+          console.dir(p);
+        }
+        DBConfig.dbClose();
+      });
+    });
     res.end();
 }
 
@@ -88,6 +106,21 @@ exports.peoplesGET = function(args, res, next) {
         "name": "aeiou",
         "id": "aeiou"
     }];
+    var db = DBConfig.dbConnect();
+    db.once('open', function(){
+      console.log('Conectado ao MongoDB.');
+      var r = new People({
+        name: 'Radix',
+        email: 'Radix@gmail.com'
+      });
+      r.save(function(err, r) {
+        if(err){
+          return console.error(err);
+          console.dir(r);
+        }
+      });
+    });
+    DBConfig.dbClose();
     if (Object.keys(data).length > 0) {
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(data[Object.keys(data)[0]] || {}, null, 2));
