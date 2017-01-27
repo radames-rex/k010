@@ -31,37 +31,36 @@
       </div>
       <md-divider></md-divider>
     </md-list-item>
-    <md-list-item class="md-3-line" ng-repeat="item in peoples track by $index" ng-click="null">
-      <img ng-src="images/people.svg" class="md-avatar" alt="{{item.name}}" ng-show="!editing[$index]" />
-      <div class="md-list-item-text" layout="column" ng-show="!editing[$index]" ng-init="editing[$index] = false">
-        <!-- <input name="id" type="hidden" value="{{ item.id }}"> -->
+    <md-list-item class="md-3-line people__list" ng-repeat="item in peoples track by $index" ng-click="null">
+      <img ng-src="images/people.svg" class="md-avatar" alt="{{item.name}}" ng-show="!editing[item.id]" />
+      <div class="md-list-item-text" layout="column" ng-show="!editing[item.id]" ng-init="editing[item.id] = false">
         <h4>{{ item.name }}</h4>
         <p>{{ item.email }}</p>
       </div>
-      <div class="md-list-item-text people__list-item" layout="column" ng-show="editing[$index]">
+      <div class="md-list-item-text people__list-item" layout="column" ng-show="editing[item.id]">
         <form name="peopleEditForm">
           <md-input-container>
             <label>{{ 'people.name' | translate}}</label>
-            <input name="name" ng-model="name" ng-init="name=item.name" required>
-            <div ng-messages="peopleEditForm.name.$error">
+            <input name="newName" ng-model="newName[item.id]" ng-init="newName[item.id]=item.name" required>
+            <div ng-messages="peopleEditForm.newName.$error">
               <div ng-message="required">{{'error.required' | translate}}</div>
             </div>
           </md-input-container>
           <md-input-container>
             <label>{{ 'people.email' | translate}}</label>
-            <input name="email" ng-model="email" ng-init="email=item.email" required>
-            <div ng-messages="peopleEditForm.email.$error">
+            <input name="newEmail" ng-model="newEmail[item.id]" ng-init="newEmail[item.id]=item.email" required>
+            <div ng-messages="peopleEditForm.newEmail.$error">
               <div ng-message="required">{{'error.required' | translate}}</div>
             </div>
           </md-input-container>
           <md-button type="submit" class="md-accent md-raised" aria-label="{{'people.confirm' | translate}}" ng-click="edit(item.id)"><i class="fa fa-check" aria-hidden="true"></i></md-button>
         </form>
       </div>
-      <div class="md-list-item-text people__list-item--tools" layout="column">
-        <md-button md-no-ink class="md-icon-button md-accent md-raised" aria-label="{{'people.edit' | translate}}" ng-click="editing[$index] = !editing[$index]" ng-show="!editing[$index]">
+      <div class="md-list-item-text people__list-item--tools" layout="column" ng-show="!editing[item.id]">
+        <md-button md-no-ink class="md-icon-button md-accent md-raised" aria-label="{{'people.edit' | translate}}" ng-click="editing[item.id] = !editing[item.id]">
           <i class="fa fa-edit" aria-hidden="true"></i>
         </md-button>
-        <md-button md-no-ink class="md-icon-button md-accent md-raised" aria-label="{{'people.delete' | translate}}" ng-click="delete(item.id)" ng-show="!editing[$index]">
+        <md-button md-no-ink class="md-icon-button md-accent md-raised" aria-label="{{'people.delete' | translate}}" ng-click="delete(item.id)">
           <i class="fa fa-trash-o" aria-hidden="true"></i>
         </md-button>
       </div>

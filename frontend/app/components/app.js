@@ -50,13 +50,16 @@ angular
     /*Configuração dos Temas. */
     $mdThemingProvider.theme('default')
       .primaryPalette('brown')
-      .accentPalette('green');
+      .accentPalette('green')
+      .warnPalette('orange');
     $mdThemingProvider.theme('success-toast')
       .primaryPalette('blue')
-      .accentPalette('brown');
+      .accentPalette('brown')
+      .warnPalette('orange');
     $mdThemingProvider.theme('error-toast')
       .primaryPalette('red')
-      .accentPalette('brown');
+      .accentPalette('brown')
+      .warnPalette('orange');
 
 
     /* Configuração dos estados e rotas da aplicação */

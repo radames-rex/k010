@@ -20,8 +20,8 @@ exports.peopleIdDELETE = function(args, res, next) {
             }
             DBConfig.dbClose();
         });
+        res.end();
     });
-    res.end();
 }
 
 exports.peopleIdGET = function(args, res, next) {
@@ -139,8 +139,8 @@ exports.peoplePOST = function(args, res, next) {
             }
             DBConfig.dbClose();
         });
+        res.end();
     });
-    res.end();
 }
 
 exports.peoplesGET = function(args, res, next) {

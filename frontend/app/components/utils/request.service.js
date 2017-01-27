@@ -54,7 +54,7 @@
      * @returns {object} Promessa da requisição.
      * @memberof RequestService
      */
-    RequestService.post = function(url,params) {
+    RequestService.post = function(url, params) {
       if (isOnline()) {
         return $http.post(url+params);
       }
@@ -72,9 +72,53 @@
      * @returns {object} Promessa da requisição.
      * @memberof RequestService
      */
-    RequestService.patch = function(url,params) {
+    RequestService.patch = function(url, params) {
       if (isOnline()) {
         return $http.patch(url+params);
+      }
+    };
+
+    /**
+     * Monta uma requisição Delete.
+     * @Peopleor Rádames Santiago <radames@infoway-pi.com.br>
+     * @name delete
+     * @function
+     * @param {string} url Url da requisição.
+     * @param {object} data Parâmetros.
+     * @param {boolean} withoutLoader Sem Loader.
+     * @param {boolean} withFilterLoader Com Loader do Filtro.
+     * @returns {object} Promessa da requisição.
+     * @memberof RequestService
+     */
+    RequestService.delete = function(url) {
+      if (isOnline()) {
+        return $http.delete(url);
+      }
+    };
+
+    /**
+    * Monta uma requisição Put.
+    * @Peopleor Rádames Santiago <radames@infoway-pi.com.br>
+    * @name put
+    * @function
+    * @param {string} url Url da requisição.
+    * @param {object} data Parâmetros.
+    * @param {boolean} withoutLoader Sem Loader.
+    * @param {boolean} withFilterLoader Com Loader do Filtro.
+    * @returns {object} Promessa da requisição.
+    * @memberof RequestService
+    */
+    RequestService.put = function(url, body) {
+      if (isOnline()) {
+        return $http({
+          url: url,
+          dataType: 'json',
+          method: 'PUT',
+          data: body,
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
       }
     };
 
