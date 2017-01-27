@@ -9,7 +9,7 @@
    * # PeopleCtrl
    * Controller of the k010App
    */
-  var PeopleCtrl = function($scope, $rootScope, PeopleService, ToastService, $state) {
+  var PeopleCtrl = function($scope, $rootScope, PeopleService, ToastService, $state, lodash) {
 
     $scope.newName = [];
     $scope.newEmail = [];
@@ -65,11 +65,27 @@
       });
     };
 
+    $scope.draft = function() {
+      var arrDraft = [];
+      angular.forEach($scope.peoples, function(value){
+        arrDraft.push(value);
+      });
+      arrDraft = lodash.shuffle(arrDraft);
+      for (var i = 0; i < arrDraft.length; i++) {
+        if(i === arrDraft.length-1){//ultimo
+          arrDraft[i].friend = arrDraft[0].name;
+        }else{
+          arrDraft[i].friend = arrDraft[i+1].name;
+        }
+      }
+      //criar método no backend
+    };
+
     $scope.list();
 
   };
 
-  PeopleCtrl.$inject = ['$scope', '$rootScope', 'PeopleService', 'ToastService', '$state'];
+  PeopleCtrl.$inject = ['$scope', '$rootScope', 'PeopleService', 'ToastService', '$state', 'lodash'];
 
   angular
     .module('k010App')

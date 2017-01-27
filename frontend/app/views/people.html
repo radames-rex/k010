@@ -67,7 +67,7 @@
       <md-divider></md-divider>
     </md-list-item>
     <div class="md-list-item-text people__list-item" layout="column">
-      <md-button md-no-ink class="md-accent md-raised" ng-disabled="peoples.length <= 1">
+      <md-button md-no-ink class="md-accent md-raised" ng-disabled="peoples.length <= 1" ng-click="draft()">
         <md-icon md-svg-icon="images/luck.svg" aria-label="draft"></md-icon> {{ 'people.draft' | translate}}
       </md-button>
     </div>

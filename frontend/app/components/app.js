@@ -20,7 +20,8 @@ angular
     'ngTouch',
     'pascalprecht.translate',
     'ngMaterial',
-    'ngMap'
+    'ngMap',
+    'ngLodash'
   ])
   .constant('PATH', {
     main: '/main',

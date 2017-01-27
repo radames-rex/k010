@@ -6,5 +6,18 @@
 		"error" : {
 			"request" : "Tente Novamente!"
 		}
+	},
+	"people" : {
+		"title" : "Pessoas e Sorteios",
+		"new" : "Novo",
+		"name" : "Nome",
+		"email" : "Email",
+		"add" : "Adicionar",
+		"edit": "Editar",
+		"delete" : "Deletar",
+		"draft" : "Sortear"
+	},
+	"error" : {
+		"required" : "Campo obrigatório!"
 	}
 }
