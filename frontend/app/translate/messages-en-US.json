@@ -6,5 +6,18 @@
 		"error" : {
 			"request" : "Try Again!"
 		}
+	},
+	"people" : {
+		"title" : "Peoples & Luck",
+		"new" : "New",
+		"name" : "Name",
+		"email" : "Email",
+		"add" : "Add",
+		"edit": "Edit",
+		"delete" : "Delete",
+		"draft" : "Draft"
+	},
+	"error" : {
+		"required" : "This is required!"
 	}
 }

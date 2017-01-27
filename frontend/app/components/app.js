@@ -50,7 +50,7 @@ angular
     /*Configuração do Tema. */
     $mdThemingProvider.theme('default')
       .primaryPalette('brown')
-      .accentPalette('light-green');
+      .accentPalette('green');
 
     /* Configuração dos estados e rotas da aplicação */
     $stateProvider.state('main', {

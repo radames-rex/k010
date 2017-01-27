@@ -11,33 +11,17 @@
    */
   var PeopleCtrl = function($scope, $rootScope, PeopleFactory) {
 
-    if (PeopleFactory.hasUUID()) {
-      $scope.logged = true;
-    } else {
-      $scope.logged = false;
-    }
-
-    var normalizeCoordinates = function(coordinates) {
-      return "POINT (" + coordinates.lat + " " + coordinates.lon + ")";
-    };
-
-    var normalizeInventory = function(inventory) {
-      return "Water:" + inventory.water +
-        ";Food:" + inventory.food +
-        ";Medication:" + inventory.medication +
-        ";Ammunition:" + inventory.ammunition + ";";
-    };
-
-    $scope.newSurvivor = function() {
-      PeopleFactory.getPeople($scope.ctrl.name,
-        $scope.ctrl.age, $scope.ctrl.gender,
-          normalizeCoordinates($scope.ctrl.coordinates),
-            normalizeInventory($scope.ctrl.inventory)).then(function(data) {
-        PeopleFactory.setUUID(data.id);
-        PeopleFactory.setUser($scope.ctrl.name,$scope.ctrl.age, $scope.ctrl.gender);
-        $scope.logged = true;
-      });
-    };
+    $scope.peoples = [{
+      id: '1',
+      name: 'ruan',
+      email: 'ruan@gmail.com',
+      friend: 'e'
+    },{
+      id: '2',
+      name: 'matheus',
+      email: 'matheus@gmail.com',
+      friend: 'f'
+    }];
 
   };
 

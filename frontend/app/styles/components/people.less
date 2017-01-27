@@ -1,33 +1,23 @@
 
-.People {
-  margin: 40px;
-  width: 800px;
+.people {
 
-  &__label{
-    color: blue;
-
-    span{
-      color: black;
-    }
-  }
-
-  figure{
+  &__list-item form, &__list-item--tools{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    padding: 10px;
   }
+
 }
 
 /* Responsive: Portrait Smartphones */
 @media only screen and (min-device-width: 320px) and (max-device-width: 667px) {
-  .People {
-    margin: 40px;
-    width: auto;
+  .people {
+
   }
 }
 /* Responsive: Portrait tablets */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  .People {
-    margin: 40px;
-    width: auto;
+  .people {
+
   }
 }
