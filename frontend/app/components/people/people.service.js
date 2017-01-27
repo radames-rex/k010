@@ -4,7 +4,7 @@
 
   /**
    * @ngdoc function
-   * @name k010App.factory:PeopleService
+   * @name k010App.service:PeopleService
    * @description
    * # PeopleService
    * Service of the k010App
@@ -22,6 +22,21 @@
       RequestService.post(REQUEST.api.url + REQUEST.api.survivor.new, params).then(function(data) {
         data = data.data;
         if (data.id !== undefined) {
+          defer.resolve(data);
+        } else {
+          defer.reject("hasnt object");
+        }
+      }, function(response, status) {
+        defer.reject(response, status);
+      });
+      return defer.promise;
+    };
+
+    PeopleService.listPeoples = function() {
+      var defer = $q.defer();
+      RequestService.get(REQUEST.api.url + REQUEST.api.list).then(function(data) {
+        data = data.data;
+        if (data !== undefined) {
           defer.resolve(data);
         } else {
           defer.reject("hasnt object");

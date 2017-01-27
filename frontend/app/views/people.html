@@ -26,7 +26,7 @@
               <div ng-message="required">{{'error.required' | translate}}</div>
             </div>
           </md-input-container>
-          <md-button type="submit" class="md-accent md-raised" aria-label="{{'people.add' | translate}}"><i class="fa fa-check" aria-hidden="true"></i></md-button>
+          <md-button type="submit" class="md-accent md-raised" aria-label="{{'people.add' | translate}}" ng-click="create()"><i class="fa fa-check" aria-hidden="true"></i></md-button>
         </form>
       </div>
       <md-divider></md-divider>
@@ -34,7 +34,7 @@
     <md-list-item class="md-3-line" ng-repeat="item in peoples track by $index" ng-click="null">
       <img ng-src="images/people.svg" class="md-avatar" alt="{{item.name}}" ng-show="!editing[$index]" />
       <div class="md-list-item-text" layout="column" ng-show="!editing[$index]" ng-init="editing[$index] = false">
-        <input type="hidden" value="{{ item.id }}">
+        <!-- <input name="id" type="hidden" value="{{ item.id }}"> -->
         <h4>{{ item.name }}</h4>
         <p>{{ item.email }}</p>
       </div>
@@ -54,14 +54,14 @@
               <div ng-message="required">{{'error.required' | translate}}</div>
             </div>
           </md-input-container>
-          <md-button type="submit" class="md-accent md-raised" aria-label="{{'people.confirm' | translate}}"><i class="fa fa-check" aria-hidden="true"></i></md-button>
+          <md-button type="submit" class="md-accent md-raised" aria-label="{{'people.confirm' | translate}}" ng-click="edit(item.id)"><i class="fa fa-check" aria-hidden="true"></i></md-button>
         </form>
       </div>
       <div class="md-list-item-text people__list-item--tools" layout="column">
         <md-button md-no-ink class="md-icon-button md-accent md-raised" aria-label="{{'people.edit' | translate}}" ng-click="editing[$index] = !editing[$index]" ng-show="!editing[$index]">
           <i class="fa fa-edit" aria-hidden="true"></i>
         </md-button>
-        <md-button md-no-ink class="md-icon-button md-accent md-raised" aria-label="{{'people.delete' | translate}}" ng-show="!editing[$index]">
+        <md-button md-no-ink class="md-icon-button md-accent md-raised" aria-label="{{'people.delete' | translate}}" ng-click="delete(item.id)" ng-show="!editing[$index]">
           <i class="fa fa-trash-o" aria-hidden="true"></i>
         </md-button>
       </div>

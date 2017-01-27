@@ -1,7 +1,7 @@
 'use strict';
 
 var DBConfig = require('./DBConfig');
-var People = require('./peopleModel');
+var People = require('./PeopleModel');
 
 exports.peopleIdDELETE = function(args, res, next) {
     /**
@@ -160,7 +160,8 @@ exports.peoplesGET = function(args, res, next) {
             peoples.forEach(function(value) {
                 arr.push({
                     "id": value['_id'],
-                    "name": value['name']
+                    "name": value['name'],
+                    "email": value['email']
                 });
             });
             data['application/json'] = arr;

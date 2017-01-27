@@ -9,23 +9,45 @@
    * # PeopleCtrl
    * Controller of the k010App
    */
-  var PeopleCtrl = function($scope, $rootScope, PeopleFactory) {
+  var PeopleCtrl = function($scope, $rootScope, PeopleService, ToastService) {
 
-    $scope.peoples = [{
-      id: '1',
-      name: 'ruan',
-      email: 'ruan@gmail.com',
-      friend: 'e'
-    },{
-      id: '2',
-      name: 'matheus',
-      email: 'matheus@gmail.com',
-      friend: 'f'
-    }];
+    PeopleService.listPeoples().then(function(data){
+      $scope.peoples = data;
+    });
+
+    $scope.create = function(){
+      PeopleService.addPeople().then(function(data){
+        if(data){
+          console.log('TOAST');
+        }else{
+          console.log('ERROR');
+        }
+      });
+    };
+
+    $scope.edit = function(id){
+      PeopleService.editPeople(id).then(function(data){
+        if(data){
+          console.log('TOAST');
+        }else{
+          console.log('ERROR');
+        }
+      });
+    };
+
+    $scope.delete = function(id){
+      PeopleService.deletePeople(id).then(function(data){
+        if(data){
+          console.log('TOAST');
+        }else{
+          console.log('ERROR');
+        }
+      });
+    };
 
   };
 
-  PeopleCtrl.$inject = ['$scope', '$rootScope', 'PeopleFactory'];
+  PeopleCtrl.$inject = ['$scope', '$rootScope', 'PeopleService', 'ToastService'];
 
   angular
     .module('k010App')

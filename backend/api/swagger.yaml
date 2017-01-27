@@ -166,6 +166,8 @@ definitions:
     properties:
       name:
         type: "string"
+      email:
+        type: "string"
       id:
         type: "string"
   inline_response_200:
