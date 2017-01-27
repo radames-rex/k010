@@ -47,10 +47,17 @@ angular
     // $translateProvider.preferredLanguage('en');
     $translateProvider.preferredLanguage(navigator.language);
 
-    /*Configuração do Tema. */
+    /*Configuração dos Temas. */
     $mdThemingProvider.theme('default')
       .primaryPalette('brown')
       .accentPalette('green');
+    $mdThemingProvider.theme('success-toast')
+      .primaryPalette('blue')
+      .accentPalette('brown');
+    $mdThemingProvider.theme('error-toast')
+      .primaryPalette('red')
+      .accentPalette('brown');
+
 
     /* Configuração dos estados e rotas da aplicação */
     $stateProvider.state('main', {

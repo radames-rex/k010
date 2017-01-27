@@ -12,26 +12,6 @@
   var PeopleService = function(REQUEST, RequestService, $q) {
     var PeopleService = this;
 
-    PeopleService.getPeople = function(id) {
-      var defer = $q.defer(),
-        params = '?person[name]=' + name +
-        '&person[age]=' + age +
-        '&person[gender]=' + gender +
-        '&person[lonlat]=' + coordinates +
-        '&items=' + inventory;
-      RequestService.post(REQUEST.api.url + REQUEST.api.survivor.new, params).then(function(data) {
-        data = data.data;
-        if (data.id !== undefined) {
-          defer.resolve(data);
-        } else {
-          defer.reject("hasnt object");
-        }
-      }, function(response, status) {
-        defer.reject(response, status);
-      });
-      return defer.promise;
-    };
-
     PeopleService.listPeoples = function() {
       var defer = $q.defer();
       RequestService.get(REQUEST.api.url + REQUEST.api.list).then(function(data) {
@@ -47,23 +27,49 @@
       return defer.promise;
     };
 
-    PeopleService.setUUID = function(UUID) {
-      localStorage.setItem('UUID',UUID);
+    PeopleService.addPeople = function(body) {
+      var defer = $q.defer();
+      RequestService.postFull(REQUEST.api.url + REQUEST.api.add, body).then(function(data) {
+        data = data.data;
+        if (data !== undefined) {
+          defer.resolve(data);
+        } else {
+          defer.reject("hasnt object");
+        }
+      }, function(response, status) {
+        defer.reject(response, status);
+      });
+      return defer.promise;
     };
 
-    PeopleService.setUser = function(name, age, gender) {
-      localStorage.setItem('user.name',name);
-      localStorage.setItem('user.age',age);
-      localStorage.setItem('user.gender',gender);
+    PeopleService.editPeople = function(id, body) {
+      var defer = $q.defer();
+      RequestService.put(REQUEST.api.url + REQUEST.api.edit + id, body).then(function(data) {
+        data = data.data;
+        if (data !== undefined) {
+          defer.resolve(data);
+        } else {
+          defer.reject("hasnt object");
+        }
+      }, function(response, status) {
+        defer.reject(response, status);
+      });
+      return defer.promise;
     };
 
-    PeopleService.getUUID = function() {
-      var UUID = localStorage.getItem('UUID');
-      return UUID;
-    };
-
-    PeopleService.hasUUID = function() {
-      return PeopleService.getUUID() != undefined;
+    PeopleService.deletePeople = function(id) {
+      var defer = $q.defer();
+      RequestService.delete(REQUEST.api.url + REQUEST.api.delete + id).then(function(data) {
+        data = data.data;
+        if (data !== undefined) {
+          defer.resolve(data);
+        } else {
+          defer.reject("hasnt object");
+        }
+      }, function(response, status) {
+        defer.reject(response, status);
+      });
+      return defer.promise;
     };
   };
 

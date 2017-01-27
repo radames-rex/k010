@@ -13,24 +13,30 @@
 
     PeopleService.listPeoples().then(function(data){
       $scope.peoples = data;
+      ToastService.showSuccessToast("OK");
     });
 
     $scope.create = function(){
-      PeopleService.addPeople().then(function(data){
+      var body = {
+        "name": $scope.name,
+        "email": $scope.email
+      };
+      PeopleService.addPeople(body).then(function(data){
         if(data){
-          console.log('TOAST');
+          ToastService.showSuccessToast("OK");
         }else{
-          console.log('ERROR');
+          ToastService.showSuccessToast("NOT OK");
         }
       });
     };
 
     $scope.edit = function(id){
-      PeopleService.editPeople(id).then(function(data){
+      var body = {};
+      PeopleService.editPeople(id, body).then(function(data){
         if(data){
-          console.log('TOAST');
+          ToastService.showSuccessToast("OK");
         }else{
-          console.log('ERROR');
+          ToastService.showSuccessToast("NOT OK");
         }
       });
     };
@@ -38,9 +44,9 @@
     $scope.delete = function(id){
       PeopleService.deletePeople(id).then(function(data){
         if(data){
-          console.log('TOAST');
+          ToastService.showSuccessToast("OK");
         }else{
-          console.log('ERROR');
+          ToastService.showSuccessToast("NOT OK");
         }
       });
     };

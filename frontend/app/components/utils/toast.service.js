@@ -11,9 +11,9 @@
 			SUCCESS : 'success-toast',
 			ERROR : 'error-toast',
 			DEFAULT : ''
-		}
+		};
 
-		var showToastService = function(content, theme, callback) {
+		var showToast = function(content, theme, callback) {
 			if(content){
 				var toast = $mdToast.simple()
 				.content(content)
@@ -32,18 +32,18 @@
 
 		ToastService.DELAY = 4000;
 
-		ToastService.showSuccessToastService = function(content, callback) {
-			showToastService(content, toastType.SUCCESS, callback);
+		ToastService.showSuccessToast = function(content, callback) {
+			showToast(content, toastType.SUCCESS, callback);
 		};
 
-		ToastService.showErrorToastService = function(content, callback) {
-			showToastService(content, toastType.ERROR, callback);
+		ToastService.showErrorToast = function(content, callback) {
+			showToast(content, toastType.ERROR, callback);
 		};
 
-		ToastService.showToastService = function(content, callback) {
-			showToastService(content, toastType.DEFAULT, callback);
+		ToastService.showToast = function(content, callback) {
+			showToast(content, toastType.DEFAULT, callback);
 		};
-	}
+	};
 
 	ToastService.$inject = ['$mdToast'];
 
