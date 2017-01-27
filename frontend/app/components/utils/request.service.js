@@ -3,13 +3,13 @@
 (function() {
 
   /**
-   * Definição do Factory para todas as Requisições.
+   * Definição do Service para todas as Requisições.
    * @Peopleor Rádames Santiago <radames@infoway-pi.com.br>
-   * @class RequestFactory
+   * @class RequestService
    */
-  var RequestFactory = function($rootScope, $http) {
+  var RequestService = function($rootScope, $http) {
 
-    var RequestFactory = {};
+    var RequestService = this;
 
     /**
      * Verifica se o browser do usuário tem conexão com a Internet.
@@ -17,7 +17,7 @@
      * @name isOnline
      * @function
      * @returns {boolean} Está online ou não.
-     * @memberof RequestFactory
+     * @memberof RequestService
      */
     var isOnline = function() {
       var onLine = window.navigator.onLine;
@@ -34,9 +34,9 @@
      * @param {boolean} withoutLoader Sem Loader.
      * @param {boolean} withFilterLoader Com Loader do Filtro.
      * @returns {object} Promessa da requisição.
-     * @memberof RequestFactory
+     * @memberof RequestService
      */
-    RequestFactory.get = function(url) {
+    RequestService.get = function(url) {
       if (isOnline()) {
         return $http.get(url);
       }
@@ -52,9 +52,9 @@
      * @param {boolean} withoutLoader Sem Loader.
      * @param {boolean} withFilterLoader Com Loader do Filtro.
      * @returns {object} Promessa da requisição.
-     * @memberof RequestFactory
+     * @memberof RequestService
      */
-    RequestFactory.post = function(url,params) {
+    RequestService.post = function(url,params) {
       if (isOnline()) {
         return $http.post(url+params);
       }
@@ -70,9 +70,9 @@
      * @param {boolean} withoutLoader Sem Loader.
      * @param {boolean} withFilterLoader Com Loader do Filtro.
      * @returns {object} Promessa da requisição.
-     * @memberof RequestFactory
+     * @memberof RequestService
      */
-    RequestFactory.patch = function(url,params) {
+    RequestService.patch = function(url,params) {
       if (isOnline()) {
         return $http.patch(url+params);
       }
@@ -88,9 +88,9 @@
      * @param {boolean} withoutLoader Sem Loader.
      * @param {boolean} withFilterLoader Com Loader do Filtro.
      * @returns {object} Promessa da requisição.
-     * @memberof RequestFactory
+     * @memberof RequestService
      */
-    RequestFactory.postFull = function(url, body) {
+    RequestService.postFull = function(url, body) {
       if (isOnline()) {
         return $http({
           url: url,
@@ -103,15 +103,12 @@
         });
       }
     };
-
-
-    return RequestFactory;
   };
 
-  RequestFactory.$inject = ['$rootScope', '$http'];
+  RequestService.$inject = ['$rootScope', '$http'];
 
   angular
     .module('k010App')
-    .factory('RequestFactory', RequestFactory);
+    .service('RequestService', RequestService);
 
 })();

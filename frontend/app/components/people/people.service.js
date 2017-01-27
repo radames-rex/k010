@@ -4,22 +4,22 @@
 
   /**
    * @ngdoc function
-   * @name k010App.factory:PeopleFactory
+   * @name k010App.factory:PeopleService
    * @description
-   * # PeopleFactory
-   * Factory of the k010App
+   * # PeopleService
+   * Service of the k010App
    */
-  var PeopleFactory = function(REQUEST, RequestFactory, $q) {
-    var PeopleFactory = {};
+  var PeopleService = function(REQUEST, RequestService, $q) {
+    var PeopleService = this;
 
-    PeopleFactory.getPeople = function(name, age, gender, coordinates, inventory) {
+    PeopleService.getPeople = function(id) {
       var defer = $q.defer(),
         params = '?person[name]=' + name +
         '&person[age]=' + age +
         '&person[gender]=' + gender +
         '&person[lonlat]=' + coordinates +
         '&items=' + inventory;
-      RequestFactory.post(REQUEST.api.url + REQUEST.api.survivor.new, params).then(function(data) {
+      RequestService.post(REQUEST.api.url + REQUEST.api.survivor.new, params).then(function(data) {
         data = data.data;
         if (data.id !== undefined) {
           defer.resolve(data);
@@ -32,31 +32,29 @@
       return defer.promise;
     };
 
-    PeopleFactory.setUUID = function(UUID) {
+    PeopleService.setUUID = function(UUID) {
       localStorage.setItem('UUID',UUID);
     };
 
-    PeopleFactory.setUser = function(name, age, gender) {
+    PeopleService.setUser = function(name, age, gender) {
       localStorage.setItem('user.name',name);
       localStorage.setItem('user.age',age);
       localStorage.setItem('user.gender',gender);
     };
 
-    PeopleFactory.getUUID = function() {
+    PeopleService.getUUID = function() {
       var UUID = localStorage.getItem('UUID');
       return UUID;
     };
 
-    PeopleFactory.hasUUID = function() {
-      return PeopleFactory.getUUID() != undefined;
+    PeopleService.hasUUID = function() {
+      return PeopleService.getUUID() != undefined;
     };
-
-    return PeopleFactory;
   };
 
-  PeopleFactory.$inject = ['REQUEST', 'RequestFactory', '$q'];
+  PeopleService.$inject = ['REQUEST', 'RequestService', '$q'];
 
   angular
     .module('k010App')
-    .factory('PeopleFactory', PeopleFactory);
+    .service('PeopleService', PeopleService);
 })();
