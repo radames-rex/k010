@@ -29,7 +29,8 @@ angular
   })
   .constant('REQUEST', {
     api: {
-      url: 'http://localhost:5000/api',
+      // url: 'http://localhost:5000/api',
+      url: 'https://k010-api.herokuapp.com/api',
       add: '/people',
       edit: '/people/',
       delete: '/people/',
