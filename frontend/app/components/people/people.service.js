@@ -68,6 +68,21 @@
       });
       return defer.promise;
     };
+
+    PeopleService.sendMail = function(content) {
+      var defer = $q.defer();
+      RequestService.delete(REQUEST.api.url + REQUEST.api.delete + id).then(function(data) {
+        if (data !== undefined) {
+          defer.resolve(data);
+        } else {
+          defer.reject("hasnt object");
+        }
+      }, function(response, status) {
+        defer.reject(response, status);
+      });
+      return defer.promise;
+    };
+
   };
 
   PeopleService.$inject = ['REQUEST', 'RequestService', '$q'];
