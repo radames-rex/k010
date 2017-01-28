@@ -69,9 +69,10 @@
       return defer.promise;
     };
 
-    PeopleService.sendMail = function(content) {
+    PeopleService.sendMail = function(body) {
       var defer = $q.defer();
-      RequestService.delete(REQUEST.api.url + REQUEST.api.delete + id).then(function(data) {
+      RequestService.postFull(REQUEST.api.url + REQUEST.api.email, body).then(function(data) {
+        console.log(data);
         if (data !== undefined) {
           defer.resolve(data);
         } else {

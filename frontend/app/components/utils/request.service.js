@@ -147,6 +147,33 @@
         });
       }
     };
+
+    /**
+     * Monta uma requisição Post para SendGrid.
+     * @Peopleor Rádames Santiago <radames@infoway-pi.com.br>
+     * @name get
+     * @function
+     * @param {string} url Url da requisição.
+     * @param {object} data Parâmetros.
+     * @param {boolean} withoutLoader Sem Loader.
+     * @param {boolean} withFilterLoader Com Loader do Filtro.
+     * @returns {object} Promessa da requisição.
+     * @memberof RequestService
+     */
+    RequestService.postEmail = function(url, body, auth) {
+      if (isOnline()) {
+        return $http({
+          url: url,
+          dataType: 'json',
+          method: 'POST',
+          data: body,
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": auth
+          }
+        });
+      }
+    };
   };
 
   RequestService.$inject = ['$rootScope', '$http'];

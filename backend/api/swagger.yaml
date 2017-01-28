@@ -161,6 +161,43 @@ paths:
         400:
           description: "requisição inválida"
       x-swagger-router-controller: "Public"
+  /draft:
+    post:
+      summary: "Sorteia para todas as pessoas"
+      description: "Sorteia para todas as pessoas.\n"
+      operationId: "draftPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "peoples"
+        description: "todas as pessoas"
+        required: true
+        schema:
+          $ref: "#/definitions/peoples"
+      responses:
+        200:
+          description: "sorteio com sucesso"
+        400:
+          description: "requisição inválida"
+      x-swagger-router-controller: "Public"
+    options:
+      operationId: "draftOPTIONS"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "métodos disponíveis"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+      x-swagger-router-controller: "Public"
 definitions:
   inline_response_200_1:
     properties:
@@ -192,3 +229,12 @@ definitions:
         type: "string"
       email:
         type: "string"
+  peoples:
+    type: array
+    items:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        email:
+          type: "string"

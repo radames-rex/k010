@@ -2,6 +2,7 @@
 
 var DBConfig = require('./DBConfig');
 var People = require('./PeopleModel');
+var requestify = require('requestify');
 
 exports.peopleIdDELETE = function(args, res, next) {
     /**
@@ -174,5 +175,65 @@ exports.peoplesGET = function(args, res, next) {
             }
         });
     });
+
+}
+
+exports.draftPOST = function(args, res, next) {
+  /**
+  * parameters expected in the args:
+  * peoples (Peoples)
+  * auth (String)
+  **/
+  var data = {},
+    body = {},
+    sendgrid = {
+      url: 'https://api.sendgrid.com/v3/mail/send',
+      auth: 'Bearer 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'
+    };
+  args.peoples.value.forEach(function(value){
+    body = {
+      "personalizations": [{
+        "to": [{
+          "email": value.email
+        }]
+      }],
+      "from": {"email": "radames.rex@gmail.com"},
+      "subject": "K010 Result",
+      "content": [{
+        "type": "text/plain",
+        "value": "Your Friend is: "+value.friend
+      }]
+    };
+    requestify.request(sendgrid.url, {
+      method: 'POST',
+      body: body,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': sendgrid.auth
+      },
+      dataType: 'json'
+    })
+    .then(function(response) {
+      console.log(response);
+      response.getBody();
+    },function(err) {
+      console.log(err);
+    });
+    res.end();
+  });
+}
+
+exports.draftOPTIONS = function(args, res, next) {
+    /**
+     * parameters expected in the args:
+     **/
+    var data = {};
+    data['application/json'] = ['POST', 'GET', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'];
+    if (Object.keys(data).length > 0) {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(data[Object.keys(data)[0]] || {}, null, 2));
+    } else {
+        res.end();
+    }
 
 }

@@ -78,7 +78,15 @@
           arrDraft[i].friend = arrDraft[i+1].name;
         }
       }
-      //criar método no backend
+      PeopleService.sendMail(arrDraft).then(function(data){
+        if(data.status === 200){
+          ToastService.showSuccessToast("Success");
+          location.reload();
+          // $state.reload();
+        }else{
+          ToastService.showSuccessToast("Try Again!");
+        }
+      });
     };
 
     $scope.list();

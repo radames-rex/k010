@@ -31,3 +31,11 @@ module.exports.peoplePOST = function peoplePOST (req, res, next) {
 module.exports.peoplesGET = function peoplesGET (req, res, next) {
   Public.peoplesGET(req.swagger.params, Utils.setCORS(res), next);
 };
+
+module.exports.draftPOST = function draftPOST (req, res, next) {
+  Public.draftPOST(req.swagger.params, Utils.setCORS(res), next);
+};
+
+module.exports.draftOPTIONS = function draftOPTIONS (req, res, next) {
+  Public.draftOPTIONS(req.swagger.params, Utils.setCORS(res), next);
+};

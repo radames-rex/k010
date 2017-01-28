@@ -29,14 +29,14 @@ angular
   })
   .constant('REQUEST', {
     api: {
-      url: 'http://localhost:8080/api',
-      smtp: '???',
+      url: 'http://localhost:5000/api',
       add: '/people',
       edit: '/people/',
       delete: '/people/',
       fetch: '/people/',
-      list: '/peoples'
-    }
+      list: '/peoples',
+      email: '/draft'
+    },
   })
   .config(function($stateProvider, $urlRouterProvider, $translateProvider, PATH, $mdThemingProvider) {
 
