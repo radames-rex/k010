@@ -16,12 +16,15 @@
     $scope.editing = [];
 
     $scope.list = function(){
+      $rootScope.loading = true;
       PeopleService.listPeoples().then(function(data){
         $scope.peoples = data;
+        $rootScope.loading = false;
       });
     };
 
     $scope.create = function(){
+      $rootScope.loading = true;
       var body = {
         "name": $scope.name,
         "email": $scope.email
@@ -38,6 +41,7 @@
     };
 
     $scope.edit = function(id){
+      $rootScope.loading = true;
       var body = {
         "name": $scope.newName[id],
         "email": $scope.newEmail[id]
@@ -54,6 +58,7 @@
     };
 
     $scope.delete = function(id){
+      $rootScope.loading = true;
       PeopleService.deletePeople(id).then(function(data){
         if(data.status === 200){
           ToastService.showSuccessToast("Success");
@@ -66,6 +71,7 @@
     };
 
     $scope.draft = function() {
+      $rootScope.loading = true;
       var arrDraft = [];
       angular.forEach($scope.peoples, function(value){
         arrDraft.push(value);

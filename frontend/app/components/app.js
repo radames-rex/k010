@@ -79,4 +79,6 @@ angular
       return '/main/people';
     });
 
+  }).run(function($rootScope) {
+    $rootScope.loading = false;
   });

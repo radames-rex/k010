@@ -186,30 +186,24 @@ exports.draftPOST = function(args, res, next) {
   **/
   var data = {},
     body = {},
-    sendgrid = {
-      url: 'https://api.sendgrid.com/v3/mail/send',
-      auth: 'Bearer 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'
+    postmark = {
+      url: 'https://api.postmarkapp.com/email',
+      auth: 'e6c95560-c4dc-4837-9c5d-761ef0f840c4'
     };
   args.peoples.value.forEach(function(value){
     body = {
-      "personalizations": [{
-        "to": [{
-          "email": value.email
-        }]
-      }],
-      "from": {"email": "radames.rex@gmail.com"},
-      "subject": "K010 Result",
-      "content": [{
-        "type": "text/plain",
-        "value": "Your Friend is: "+value.friend
-      }]
-    };
-    requestify.request(sendgrid.url, {
+    	"From": "radames@dev-endless.com",
+    	"To": value.email,
+    	"Subject": "K010 Result",
+    	"HtmlBody": "<html><body><strong>Hello</strong> Your Friend is: "+value.friend+"</body></html>"
+    }
+    requestify.request(postmark.url, {
       method: 'POST',
       body: body,
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': sendgrid.auth
+        'X-Postmark-Server-Token': postmark.auth
       },
       dataType: 'json'
     })

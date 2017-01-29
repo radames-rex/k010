@@ -8,6 +8,10 @@
     </div>
   </md-toolbar>
 
+  <div class="main__progress" layout="row" layout-sm="column" layout-align="space-around" ng-show="loading">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+  </div>
+
   <section class="main__container" ui-view></section>
 
 </div>

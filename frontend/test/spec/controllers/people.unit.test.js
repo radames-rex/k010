@@ -14,15 +14,7 @@ describe('Controller: PeopleCtrl', function () {
     });
   }));
 
-  it('should normalize object with coordinates', function () {
-    expect(true).toBe(true);
-  });
-
-  it('should normalize object with inventory', function () {
-    expect(true).toBe(true);
-  });
-
-  it('should include new survivor and set UUID in localstorage', function () {
+  it('should ...', function () {
     expect(true).toBe(true);
   });
 });
