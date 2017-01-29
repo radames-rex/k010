@@ -46,8 +46,8 @@ angular
       prefix: 'translate/messages-',
       suffix: '.json'
     });
-    // $translateProvider.preferredLanguage('en');
-    $translateProvider.preferredLanguage(navigator.language);
+    $translateProvider.preferredLanguage('pt-BR');
+    // $translateProvider.preferredLanguage(navigator.language);
 
     /*Configuração dos Temas. */
     $mdThemingProvider.theme('default')
